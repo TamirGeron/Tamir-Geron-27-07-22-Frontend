@@ -1,0 +1,17 @@
+/* SETUP */
+@import "setup/_variables.css";
+
+/* BASE */
+@import "basic/base.css";
+@import "basic/helpers.css";
+
+/* PAGES */
+@import "pages/main-app.css";
+
+/* COMPONENTS */
+@import "components/header.css";
+@import "components/main.css";
+@import "components/login.css";
+@import "components/friends.css";
+@import "components/admin.css";
+@import "components/messenger.css";

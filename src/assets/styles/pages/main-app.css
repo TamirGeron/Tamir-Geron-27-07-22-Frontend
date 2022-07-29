@@ -1,0 +1,9 @@
+.main-app {
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas:
+    "header header header"
+    ". main . ";
+  height: 100%;
+}

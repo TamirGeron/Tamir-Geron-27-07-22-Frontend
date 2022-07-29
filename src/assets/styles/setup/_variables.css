@@ -1,0 +1,10 @@
+/* Colors */
+:root {
+  --green: rgb(0, 168, 132);
+  --greenTran: rgb(0, 168, 132, 0.3);
+  --white: #ffffff;
+  --yellow: rgb(13, 255, 0);
+  --cream: rgb(250, 236, 215);
+  --black: #000000;
+  --greylight: rgb(248, 248, 248);
+}

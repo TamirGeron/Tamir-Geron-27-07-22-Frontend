@@ -1,0 +1,74 @@
+.messenger {
+  height: 100%;
+  grid-template-columns: 1fr 3fr;
+}
+
+.messenger h1 {
+  font-size: 20px;
+}
+
+.chat {
+  padding: 5px;
+  background-color: var(--greylight);
+}
+
+.chat input {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.messenger-manager {
+  padding: 5px;
+}
+
+.messenger-manager h1 {
+  font-size: 2rem;
+}
+
+.align-end-white {
+  text-align: end;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.align-start-creme {
+  background-color: var(--cream);
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.chat-name {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.friends-list {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.friends-list:hover {
+  background-color: var(--greylight);
+}
+
+.chat-preview {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.chat-preview:hover {
+  background-color: var(--greylight);
+}
+
+.chat-preview-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.friends-list-container {
+  margin-top: 2rem;
+}

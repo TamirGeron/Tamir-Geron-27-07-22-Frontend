@@ -1,0 +1,84 @@
+.header {
+  background-color: var(--green);
+  box-shadow: inset 0px -6px 0 var(--green);
+  height: 100px;
+  grid-area: header;
+  display: flex;
+}
+
+.main-header {
+  margin: 0 20px;
+  width: 100%;
+}
+
+.logo {
+  font-size: 40px;
+}
+
+.btn-toggle-menu {
+  display: block;
+}
+
+.main-header .logo {
+  color: var(--white);
+}
+
+.main-header .main-nav .header-nav {
+  width: 100%;
+  color: var(--white);
+  cursor: pointer;
+  height: 100px;
+
+  transition: box-shadow 0.4s;
+}
+
+.main-header .main-nav .header-nav:hover {
+  color: var(--yellow);
+  box-shadow: inset 0px -6px 0 var(--yellow);
+}
+
+.btn-toggle-menu {
+  display: block;
+  color: var(--white);
+  cursor: pointer;
+  transition: box-shadow 0.4s;
+}
+
+.main-nav {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--green);
+  top: 100px;
+  transition: max-height 0.6s;
+}
+
+.menu-open .main-header .main-nav {
+  max-height: 100vh;
+  display: flex;
+}
+
+@media (min-width: 740px) {
+  .main-header {
+    display: flex;
+  }
+
+  .main-nav {
+    display: flex;
+    flex-direction: row;
+    position: unset;
+    justify-content: flex-end;
+  }
+
+  .main-header .main-nav .header-nav {
+    width: 100px;
+  }
+
+  .btn-toggle-menu {
+    display: none;
+  }
+}

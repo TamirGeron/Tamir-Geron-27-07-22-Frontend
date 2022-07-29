@@ -1,0 +1,42 @@
+.friends {
+  height: 100%;
+}
+
+.friends-users-container {
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.friends h3 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.friends h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.friend-user-preview {
+  grid-template-columns: 1fr 1fr;
+  padding: 5px;
+}
+
+.friend-user-preview:hover {
+  background-color: var(--greenTran);
+  border-radius: 5px;
+}
+
+.friend-user-preview > * {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.friends-container {
+  border: 1px solid var(--black);
+  border-radius: 10px;
+  padding: 10px 30px;
+  width: 25rem;
+  background-color: var(--cream);
+}

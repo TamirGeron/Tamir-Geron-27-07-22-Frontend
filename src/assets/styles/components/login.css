@@ -1,0 +1,16 @@
+.login {
+  height: 100%;
+}
+
+.login-label {
+  font-size: 2rem;
+}
+
+.login-form-label-input {
+  margin: 20px 0;
+}
+
+.login input {
+  width: 20rem;
+  height: 3rem;
+}

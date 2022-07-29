@@ -1,0 +1,18 @@
+.user {
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 5px;
+}
+
+.users-header {
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 5px;
+}
+
+.user-name-email-edit {
+  padding: 5px;
+}
+
+.user:hover {
+  background-color: var(--greenTran);
+  border-radius: 5px;
+}
