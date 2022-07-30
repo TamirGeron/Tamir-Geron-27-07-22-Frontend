@@ -67,7 +67,7 @@ export const Friends = () => {
   return (
     <section className="friends flex flex-column">
       <h3>Add/Delete Friends</h3>
-      <div className="friends-users-container flex space-around">
+      <div className="friends-users-container flex">
         <div className="friends-container">
           <h1>Friends</h1>
           {friends.length > 0 &&

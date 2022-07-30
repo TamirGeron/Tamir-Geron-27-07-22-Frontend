@@ -12,11 +12,7 @@
 }
 
 .logo {
-  font-size: 40px;
-}
-
-.btn-toggle-menu {
-  display: block;
+  font-size: 2rem;
 }
 
 .main-header .logo {
@@ -42,6 +38,7 @@
   color: var(--white);
   cursor: pointer;
   transition: box-shadow 0.4s;
+  font-size: 2rem;
 }
 
 .main-nav {
@@ -55,11 +52,16 @@
   background-color: var(--green);
   top: 100px;
   transition: max-height 0.6s;
+  z-index: 2;
 }
 
 .menu-open .main-header .main-nav {
   max-height: 100vh;
   display: flex;
+}
+
+.clean-list {
+  width: 100%;
 }
 
 @media (min-width: 740px) {

@@ -24,7 +24,7 @@ export const Login = () => {
   };
 
   return (
-    <section className="login flex align-center justify-center flex-column">
+    <section className="login flex align-center  flex-column">
       <form onSubmit={(ev) => login(ev)}>
         <div className="login-form-label-input">
           <div className="login-label">Email</div>

@@ -1,5 +1,10 @@
 .login {
   height: 100%;
+  justify-content: flex-start;
+}
+
+.login form {
+  width: 100%;
 }
 
 .login-label {
@@ -11,6 +16,20 @@
 }
 
 .login input {
-  width: 20rem;
+  width: 100%;
   height: 3rem;
+}
+
+@media (min-width: 740px) {
+  .login {
+    justify-content: center;
+  }
+
+  .login input {
+    width: 20rem;
+  }
+
+  .login-form-label-input {
+    text-align: center;
+  }
 }

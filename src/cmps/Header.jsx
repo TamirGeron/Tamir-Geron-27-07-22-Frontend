@@ -16,8 +16,14 @@ export const Header = () => {
     else setMenuOpen("menu-open");
   };
 
+  const onNavClick = (to) => {
+    setMenuOpen("");
+    navigate(to);
+  };
+
   const logout = (ev) => {
     dispatch(onLogout());
+    setMenuOpen("");
     navigate("/");
   };
 
@@ -28,18 +34,18 @@ export const Header = () => {
 
         {user && (
           <div className="main-nav flex clean-list">
-            <div onClick={() => navigate("/messenger")}>
+            <div onClick={() => onNavClick("/messenger")}>
               <div className="header-nav flex justify-center align-center">
                 Messenger
               </div>
             </div>
-            <div onClick={() => navigate("/friends")}>
+            <div onClick={() => onNavClick("/friends")}>
               <div className="header-nav flex justify-center align-center">
                 Friends
               </div>
             </div>
             {user.isAdmin && (
-              <div onClick={() => navigate("/admin")}>
+              <div onClick={() => onNavClick("/admin")}>
                 <div className="header-nav flex justify-center align-center">
                   Admin
                 </div>
@@ -54,12 +60,12 @@ export const Header = () => {
         )}
         {!user && (
           <div className="main-nav flex clean-list">
-            <div onClick={() => navigate("/")}>
+            <div onClick={() => onNavClick("/")}>
               <div className="header-nav flex justify-center align-center">
                 Login
               </div>
             </div>
-            <div onClick={() => navigate("/signup")}>
+            <div onClick={() => onNavClick("/signup")}>
               <div className="header-nav flex justify-center align-center">
                 Signup
               </div>

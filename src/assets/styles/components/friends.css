@@ -5,20 +5,21 @@
 .friends-users-container {
   height: 100%;
   margin-bottom: 20px;
+  flex-direction: column;
 }
 
 .friends h3 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .friends h1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-align: center;
 }
 
 .friend-user-preview {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   padding: 5px;
 }
 
@@ -31,12 +32,34 @@
   cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
+  text-overflow: ellipsis;
 }
 
 .friends-container {
   border: 1px solid var(--black);
   border-radius: 10px;
-  padding: 10px 30px;
-  width: 25rem;
+  padding: 10px 10px;
+  max-width: 100%;
   background-color: var(--cream);
+  height: 100%;
+  overflow-y: auto;
+}
+
+@media (min-width: 740px) {
+  .friends h3 {
+    font-size: 2rem;
+  }
+
+  .friends h1 {
+    font-size: 1.5rem;
+  }
+
+  .friends-users-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .friends-container {
+    padding: 10px 30px;
+  }
 }

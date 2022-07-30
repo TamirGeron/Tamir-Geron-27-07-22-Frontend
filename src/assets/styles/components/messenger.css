@@ -1,6 +1,12 @@
 .messenger {
   height: 100%;
-  grid-template-columns: 1fr 3fr;
+}
+
+.none {
+  display: none;
+}
+.block {
+  display: block;
 }
 
 .messenger h1 {
@@ -10,15 +16,18 @@
 .chat {
   padding: 5px;
   background-color: var(--greylight);
+  height: 100%;
 }
 
 .chat input {
   width: 100%;
   border-radius: 5px;
+  height: 2rem;
 }
 
 .messenger-manager {
   padding: 5px;
+  height: 100%;
 }
 
 .messenger-manager h1 {
@@ -46,7 +55,7 @@
   font-weight: 600;
 }
 
-.friends-list {
+.friends {
   cursor: pointer;
   padding: 5px;
 }
@@ -70,5 +79,31 @@
 }
 
 .friends-list-container {
-  margin-top: 2rem;
+  margin-top: 1rem;
+  overflow-y: auto;
+}
+
+.msgs-container {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.msgs-form-container {
+  height: 100%;
+}
+
+.chats-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+@media (min-width: 740px) {
+  .messenger {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .none {
+    display: block;
+  }
 }

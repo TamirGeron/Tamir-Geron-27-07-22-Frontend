@@ -12,6 +12,8 @@ export const Messenger = () => {
   const [chatName, setChatName] = useState(null);
   const [chat, setChat] = useState(null);
   const [msg, setMsg] = useState("");
+  const [isChatHide, setIsChatHide] = useState("none");
+  const [isManageHide, setIsManageHide] = useState("block");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -78,31 +80,42 @@ export const Messenger = () => {
         setChat(chatService.makeChat([user, curChat]));
       }
     }
+    setIsChatHide("flex");
+    setIsManageHide("none");
+  };
+
+  const onBack = () => {
+    setIsChatHide("none");
+    setIsManageHide("block");
   };
 
   if (!user) return <div className="loading">loading...</div>;
   return (
-    <section className="messenger grid">
-      <div className="messenger-manager">
+    <section className="messenger">
+      <div className={`messenger-manager-container ${isManageHide}`}>
         <h1>Messenger</h1>
-        {chats.map((chat, idx) => (
-          <ChatPreview
-            key={idx}
-            chat={chat}
-            user={user}
-            onSetChat={onSetChat}
-          />
-        ))}
-        <div className="friends-list-container">
-          <h1>Friends List</h1>
-          {user.friends &&
-            user.friends.map((friend) => (
-              <FriendsList
-                key={friend._id}
-                friend={friend}
+        <div className="messenger-manager flex flex-column">
+          <div className="chats-container">
+            {chats.map((chat, idx) => (
+              <ChatPreview
+                key={idx}
+                chat={chat}
+                user={user}
                 onSetChat={onSetChat}
               />
             ))}
+          </div>
+          <div className="friends-list-container">
+            <h1>Friends List</h1>
+            {user.friends &&
+              user.friends.map((friend) => (
+                <FriendsList
+                  key={friend._id}
+                  friend={friend}
+                  onSetChat={onSetChat}
+                />
+              ))}
+          </div>
         </div>
       </div>
 
@@ -113,6 +126,8 @@ export const Messenger = () => {
         setMsg={setMsg}
         user={user}
         chatName={chatName}
+        isChatHide={isChatHide}
+        onBack={onBack}
       />
     </section>
   );
