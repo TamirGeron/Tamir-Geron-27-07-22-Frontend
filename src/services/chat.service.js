@@ -20,11 +20,17 @@ function textSide(msgId, userId) {
   return res;
 }
 
-function getChatName(chat, userId) {
+function getChatName(chat, userName) {
   let user;
+  console.log("userName", userName);
   if (chat.name) {
     return chat.name;
-  } else user = chat.users.find((user) => user._id !== userId);
+  } else
+    user = chat.users.find((user) => {
+      console.log(user.name);
+      return user.name !== userName;
+    });
+  if (!user) return "loading...";
   return user.name;
 }
 

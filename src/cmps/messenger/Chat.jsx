@@ -2,7 +2,7 @@ import React from "react";
 import { chatService } from "../../services/chat.service";
 var moment = require("moment");
 
-export const Chat = ({ chat, msg, onSendMsg, setMsg, user }) => {
+export const Chat = ({ chat, msg, onSendMsg, setMsg, user, chatName }) => {
   const sendMsg = (ev) => {
     onSendMsg(ev);
     setMsg("");
@@ -13,7 +13,7 @@ export const Chat = ({ chat, msg, onSendMsg, setMsg, user }) => {
     return (
       <div className="chat flex flex-column justify-between">
         <div className="msgs-container">
-          <h1>{chatService.getChatName(chat, user._id)}</h1>
+          <h1>{chatName}</h1>
           {chat.msgs
             .slice(0)
             .reverse()

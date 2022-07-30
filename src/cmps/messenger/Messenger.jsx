@@ -6,9 +6,10 @@ import { loadChats, updateChat } from "../../store/chat/chat.actions";
 import { ChatPreview } from "./ChatPreview";
 import { FriendsList } from "./FriendsList";
 import { Chat } from "./Chat";
+import { loadUser } from "../../store/user/user.actions";
 
 export const Messenger = () => {
-  const [msgTo, setMsgTo] = useState(null);
+  const [chatName, setChatName] = useState("loading");
   const [chat, setChat] = useState(null);
   const [msg, setMsg] = useState("");
 
@@ -20,7 +21,10 @@ export const Messenger = () => {
 
   useEffect(() => {
     if (!user) navigate("/");
-    else dispatch(loadChats(user._id));
+    else {
+      dispatch(loadChats(user._id));
+      dispatch(loadUser());
+    }
   }, []);
 
   useEffect(() => {
@@ -32,6 +36,20 @@ export const Messenger = () => {
       setChat(chats[0]);
     }
   }, [chats]);
+
+  useEffect(() => {
+    console.log(chat);
+    if (chat) {
+      if (chat.users[0]._id === chat.users[1]._id) {
+        console.log("WHYYYYY");
+        loadChats(user._id);
+        setChat(chat);
+      } else if (!chat.name) {
+        console.log("no Chat Name");
+        setChatName(chatService.getChatName(chat, user.name));
+      } else setChatName(chat.name);
+    }
+  }, [chat]);
 
   const onSendMsg = (ev) => {
     ev.preventDefault();
@@ -49,14 +67,17 @@ export const Messenger = () => {
 
   const onSetChat = (curChat) => {
     if (chats.some((chat) => chat._id === curChat._id)) {
+      console.log("ready chats", curChat);
       setChat(curChat);
     } else {
       let newChat = chats.find((chat) =>
         chat.users.some((curUser) => curUser._id === curChat._id)
       );
       if (newChat) {
+        console.log("ready friends chats", newChat);
         setChat(newChat);
       } else {
+        console.log("firs chat", chatService.makeChat([user, curChat]));
         setChat(chatService.makeChat([user, curChat]));
       }
     }
@@ -94,6 +115,7 @@ export const Messenger = () => {
         onSendMsg={onSendMsg}
         setMsg={setMsg}
         user={user}
+        chatName={chatName}
       />
     </section>
   );

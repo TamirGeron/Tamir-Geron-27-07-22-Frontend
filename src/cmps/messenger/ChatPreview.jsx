@@ -3,6 +3,8 @@ import { chatService } from "../../services/chat.service";
 var moment = require("moment");
 
 export const ChatPreview = ({ chat, user, onSetChat }) => {
+  console.log("ChatPreview", chat);
+
   if (!chat) return <div></div>;
   return (
     <div
@@ -11,7 +13,7 @@ export const ChatPreview = ({ chat, user, onSetChat }) => {
     >
       <div>
         <div className="chat-preview-name">
-          {chatService.getChatName(chat, user._id)}
+          {chatService.getChatName(chat, user.name)}
         </div>
         <div>{chat.msgs[0].msg}</div>
       </div>
