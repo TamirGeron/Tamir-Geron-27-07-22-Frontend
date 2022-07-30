@@ -1,6 +1,6 @@
 import { chatService } from "../../services/chat.service";
 
-export function loadChats(userId) {
+export function loadChats(userId = "all") {
   return async (dispatch) => {
     try {
       let chats = await chatService.getChats(userId);

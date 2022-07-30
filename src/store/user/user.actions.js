@@ -79,7 +79,6 @@ export function loadUser() {
 export function updateUser(user, isNowUser = false) {
   return async (dispatch) => {
     try {
-      console.log(user);
       const savedUser = await userService.update(user, isNowUser);
       dispatch({ type: "UPDATE_USER", savedUser });
     } catch (err) {

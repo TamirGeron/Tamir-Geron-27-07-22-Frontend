@@ -9,7 +9,7 @@ import { Chat } from "./Chat";
 import { loadUser } from "../../store/user/user.actions";
 
 export const Messenger = () => {
-  const [chatName, setChatName] = useState("loading");
+  const [chatName, setChatName] = useState(null);
   const [chat, setChat] = useState(null);
   const [msg, setMsg] = useState("");
 
@@ -39,12 +39,15 @@ export const Messenger = () => {
 
   useEffect(() => {
     if (chat) {
+      let newChatName = chat.name;
       if (chat.users[0]._id === chat.users[1]._id) {
         loadChats(user._id);
         setChat(chat);
-      } else if (!chat.name) {
-        setChatName(chatService.getChatName(chat, user.name));
-      } else setChatName(chat.name);
+      }
+      if (!chat.name) {
+        newChatName = chatService.getChatName(chat, user.name);
+      }
+      setChatName(newChatName);
     }
   }, [chat]);
 

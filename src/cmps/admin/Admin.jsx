@@ -8,10 +8,12 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { UserPreview } from "./UserPreview";
+import { loadChats, updateChat } from "../../store/chat/chat.actions";
 
 export const Admin = () => {
   const { users } = useSelector((storeState) => storeState.userModule);
   const { user } = useSelector((storeState) => storeState.userModule);
+  const { chats } = useSelector((storeState) => storeState.chatModule);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +22,10 @@ export const Admin = () => {
     if (!user) {
       navigate("/");
       return;
-    } else dispatch(loadUsers());
+    } else {
+      dispatch(loadUsers());
+      dispatch(loadChats());
+    }
   }, []);
 
   const onDeleteUser = (userId) => {
@@ -38,20 +43,30 @@ export const Admin = () => {
   };
 
   const editUser = (editUser) => {
-    // console.log(editUser);
     dispatch(updateUser(editUser));
     users.forEach((user) => {
       let newUser = { ...user };
-      console.log("user", editUser._id);
       const friendIdx = user.friends.findIndex((friend) => {
-        console.log("friend", friend._id);
         return friend._id === editUser._id;
       });
-      console.log(friendIdx);
       if (friendIdx >= 0) {
         newUser.friends[friendIdx].name = editUser.name;
         newUser.friends[friendIdx].email = editUser.email;
         dispatch(updateUser(newUser, newUser.isAdmin));
+      }
+    });
+    chats.forEach((chat) => {
+      let newChat = { ...chat };
+      const chatIdx = chat.users.findIndex((user) => user._id === editUser._id);
+      if (chatIdx >= 0) {
+        newChat.users[chatIdx].name = editUser.name;
+        const newMsgs = chat.msgs.map((msg) => {
+          let newMsg = { ...msg };
+          if (msg.userId === editUser._id) newMsg.name = editUser.name;
+          return newMsg;
+        });
+        newChat.msgs = newMsgs;
+        dispatch(updateChat(newChat));
       }
     });
   };
