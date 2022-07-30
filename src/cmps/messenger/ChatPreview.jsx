@@ -3,8 +3,6 @@ import { chatService } from "../../services/chat.service";
 var moment = require("moment");
 
 export const ChatPreview = ({ chat, user, onSetChat }) => {
-  console.log("ChatPreview", chat);
-
   if (!chat) return <div></div>;
   return (
     <div
