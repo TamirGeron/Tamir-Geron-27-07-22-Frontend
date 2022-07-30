@@ -43,6 +43,7 @@ export const Messenger = () => {
       userId: user._id,
     });
     dispatch(updateChat(newChat));
+    dispatch(loadChats(user._id));
     setChat(newChat);
   };
 
