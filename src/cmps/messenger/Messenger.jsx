@@ -38,14 +38,11 @@ export const Messenger = () => {
   }, [chats]);
 
   useEffect(() => {
-    console.log(chat);
     if (chat) {
       if (chat.users[0]._id === chat.users[1]._id) {
-        console.log("WHYYYYY");
         loadChats(user._id);
         setChat(chat);
       } else if (!chat.name) {
-        console.log("no Chat Name");
         setChatName(chatService.getChatName(chat, user.name));
       } else setChatName(chat.name);
     }
@@ -67,17 +64,14 @@ export const Messenger = () => {
 
   const onSetChat = (curChat) => {
     if (chats.some((chat) => chat._id === curChat._id)) {
-      console.log("ready chats", curChat);
       setChat(curChat);
     } else {
       let newChat = chats.find((chat) =>
         chat.users.some((curUser) => curUser._id === curChat._id)
       );
       if (newChat) {
-        console.log("ready friends chats", newChat);
         setChat(newChat);
       } else {
-        console.log("firs chat", chatService.makeChat([user, curChat]));
         setChat(chatService.makeChat([user, curChat]));
       }
     }

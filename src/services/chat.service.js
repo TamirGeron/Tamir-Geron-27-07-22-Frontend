@@ -22,12 +22,10 @@ function textSide(msgId, userId) {
 
 function getChatName(chat, userName) {
   let user;
-  console.log("userName", userName);
   if (chat.name) {
     return chat.name;
   } else
     user = chat.users.find((user) => {
-      console.log(user.name);
       return user.name !== userName;
     });
   if (!user) return "loading...";
