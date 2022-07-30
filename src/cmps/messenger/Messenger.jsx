@@ -24,13 +24,19 @@ export const Messenger = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(loadChats(user._id));
-  }, [chat]);
+    if (chats.length > 0) {
+      if (!chats[0]) {
+        dispatch(loadChats(user._id));
+        return;
+      }
+      setChat(chats[0]);
+    }
+  }, [chats]);
 
   const onSendMsg = (ev) => {
     ev.preventDefault();
     let newChat = { ...chat };
-    newChat.msgs.push({
+    newChat.msgs.unshift({
       msg: msg,
       date: new Date(),
       name: user.name,
@@ -41,17 +47,19 @@ export const Messenger = () => {
   };
 
   const onSetChat = (curChat) => {
-    if (chats.some((chat) => chat._id === curChat._id)) setChat(curChat);
-    else {
+    if (chats.some((chat) => chat._id === curChat._id)) {
+      setChat(curChat);
+    } else {
       let newChat = chats.find((chat) =>
         chat.users.some((curUser) => curUser._id === curChat._id)
       );
-      if (newChat) setChat(newChat);
-      else setChat(chatService.makeChat([user, curChat]));
+      if (newChat) {
+        setChat(newChat);
+      } else {
+        setChat(chatService.makeChat([user, curChat]));
+      }
     }
   };
-
-  console.log("chats", chats);
 
   if (!user) return <div className="loading">loading...</div>;
   return (

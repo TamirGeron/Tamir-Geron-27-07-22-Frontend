@@ -21,13 +21,10 @@ function textSide(msgId, userId) {
 }
 
 function getChatName(chat, userId) {
-  console.log(chat);
-  console.log("userId", userId);
   let user;
   if (chat.name) {
     return chat.name;
   } else user = chat.users.find((user) => user._id !== userId);
-  console.log(user);
   return user.name;
 }
 

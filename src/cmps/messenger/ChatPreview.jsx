@@ -13,9 +13,9 @@ export const ChatPreview = ({ chat, user, onSetChat }) => {
         <div className="chat-preview-name">
           {chatService.getChatName(chat, user._id)}
         </div>
-        <div>{chat.msgs[chat.msgs.length - 1].msg}</div>
+        <div>{chat.msgs[0].msg}</div>
       </div>
-      {moment(chat.msgs[chat.msgs.length - 1].date).format(" D MMMM  HH:mm")}
+      {moment(chat.msgs[0].date).format(" D MMMM  HH:mm")}
     </div>
   );
 };
