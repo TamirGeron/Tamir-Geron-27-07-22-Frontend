@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUsers, updateUser } from "../../store/user/user.actions";
+import { loadUsers, updateUser, loadUser } from "../../store/user/user.actions";
 import { FriendPreview } from "./FriendPreview";
 import { UserToPreview } from "./UserToPreview";
 
@@ -13,6 +13,13 @@ export const Friends = () => {
   const { users } = useSelector((storeState) => storeState.userModule);
   const [usersFiltered, setUsersFiltered] = useState([]);
   const [friends, setFriends] = useState([]);
+
+  useEffect(() => {
+    if (!user) navigate("/");
+    else {
+      dispatch(loadUser());
+    }
+  }, []);
 
   useEffect(() => {
     if (!user) {
@@ -45,14 +52,14 @@ export const Friends = () => {
       email: curUser.email,
     });
     newUser.friends = newFriends;
-    dispatch(updateUser(newUser));
+    dispatch(updateUser(newUser, true));
     setFriends(newFriends);
   };
 
   const onDelFriend = (idx) => {
     let newUser = { ...user };
     newUser.friends.splice(idx, 1);
-    dispatch(updateUser(newUser));
+    dispatch(updateUser(newUser, true));
     setFriends(newUser.friends);
   };
 

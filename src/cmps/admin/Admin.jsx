@@ -25,10 +25,35 @@ export const Admin = () => {
 
   const onDeleteUser = (userId) => {
     dispatch(removeUser(userId));
+    users.forEach((user) => {
+      if (userId !== user._id) {
+        const newFriends = user.friends.filter(
+          (friend) => friend._id !== userId
+        );
+        let newUser = { ...user };
+        newUser.friends = newFriends;
+        dispatch(updateUser(newUser, newUser.isAdmin));
+      }
+    });
   };
 
-  const editUser = (newUser) => {
-    dispatch(updateUser(newUser));
+  const editUser = (editUser) => {
+    // console.log(editUser);
+    dispatch(updateUser(editUser));
+    users.forEach((user) => {
+      let newUser = { ...user };
+      console.log("user", editUser._id);
+      const friendIdx = user.friends.findIndex((friend) => {
+        console.log("friend", friend._id);
+        return friend._id === editUser._id;
+      });
+      console.log(friendIdx);
+      if (friendIdx >= 0) {
+        newUser.friends[friendIdx].name = editUser.name;
+        newUser.friends[friendIdx].email = editUser.email;
+        dispatch(updateUser(newUser, newUser.isAdmin));
+      }
+    });
   };
 
   return (

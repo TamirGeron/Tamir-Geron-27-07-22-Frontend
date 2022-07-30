@@ -53,10 +53,10 @@ async function remove(userId) {
   await httpService.delete(`user/${userId}`);
 }
 
-async function update(user) {
+async function update(user, isNowUser = false) {
   try {
     const savedUser = await httpService.put(`user/${user._id}`, user);
-    _saveLocalUser(savedUser);
+    if (isNowUser) _saveLocalUser(savedUser);
     return savedUser;
   } catch (err) {
     console.log("err", err);
